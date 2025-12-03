@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel | Luxury Stay Experience</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a3d62;
+            --secondary-color: #f9c851;
+            --accent-color: #3c6382;
+            --light-color: #f8f9fa;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        /* Header & Navigation */
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color) !important;
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 8px 0;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 8px;
+            color: var(--dark-color) !important;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        /* Hero Banner with Animation */
+        .hero-banner {
+            height: 90vh;
+            background: linear-gradient(rgba(10, 61, 98, 0.8), rgba(10, 61, 98, 0.7)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1517840901100-8179e982acb7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: heroSlider 20s infinite;
+        }
+        
+        @keyframes heroSlider {
+            0%, 25% { opacity: 0; }
+            30%, 50% { opacity: 1; }
+            55%, 100% { opacity: 0; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        /* Booking Form Overlay */
+        .booking-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out 0.6s both;
+            transform: translateY(50px);
+            margin-top: 30px;
+        }
+        
+        .booking-btn {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        .booking-btn:hover {
+            background-color: #e6b63e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(249, 200, 81, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(249, 200, 81, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(249, 200, 81, 0); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Room Categories */
+        .room-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .room-img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .room-price {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary-color);
+            color: var(--dark-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        
+        /* Photo Gallery */
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            height: 250px;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        /* Our Story Section */
+        .story-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .founder-img {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: auto;
+        }
+        
+        /* Testimonials */
+        .testimonial-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 15px;
+            height: 100%;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 20px;
+        }
+        
+        /* Restaurant Menu */
+        .menu-item {
+            border-bottom: 1px dashed #ddd;
+            padding: 15px 0;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .menu-item-name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .menu-item-price {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-heading {
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-link {
+            color: #bbb;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .booking-container {
+                padding: 20px;
+            }
+            
+            .hero-banner {
+                height: 80vh;
+            }
+        }
+        
+        /* Availability Calendar */
+        .availability-calendar {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+        
+        .calendar-day {
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        
+        .available {
+            background-color: #d1f7c4;
+            color: #2e7d32;
+            cursor: pointer;
+        }
+        
+        .booked {
+            background-color: #ffcdd2;
+            color: #c62828;
+            cursor: not-allowed;
+        }
+        
+        .selected {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-hotel me-2"></i>Treebo
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="room.html">Rooms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#story">Our Story</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resturant.html">Restaurant</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn booking-btn" href="#booking">Book Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner with Booking Form -->
+    <section class="hero-banner" id="home">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="hero-content">
+                        <h1>Experience Luxury & Comfort</h1>
+                        <p>Welcome to Hotel, where luxury meets tranquility. Enjoy breathtaking views, world-class amenities, and exceptional service.</p>
+                        
+                        <!-- Booking Form -->
+                        <div class="booking-container" id="booking">
+                            <h3 class="text-center mb-4" style="color: var(--primary-color);">Check Availability & Book Now</h3>
+                            <form id="bookingForm">
+                                <div class="row g-3">
+                                    <div class="col-md-3">
+                                        <label for="checkIn" class="form-label">Check-in Date</label>
+                                        <input type="date" class="form-control" id="checkIn" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="checkOut" class="form-label">Check-out Date</label>
+                                        <input type="date" class="form-control" id="checkOut" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="roomType" class="form-label">Room Type</label>
+                                        <select class="form-select" id="roomType">
+                                            <option value="deluxe">Deluxe Room</option>
+                                            <option value="super-deluxe">Super Deluxe Room</option>
+                                            <option value="suite">Suite Room</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 d-flex align-items-end">
+                                        <button type="submit" class="btn booking-btn w-100">
+                                            <i class="fas fa-calendar-check me-2"></i>Check Availability
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            <!-- Availability Calendar (Initially Hidden) -->
+                            <div class="availability-calendar" id="availabilityCalendar" style="display: none;">
+                                <div class="calendar-header">
+                                    <h5 class="mb-0">Room Availability - <span id="selectedMonth">November 2023</span></h5>
+                                    <div>
+                                        <button class="btn btn-sm btn-outline-secondary me-2" id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                                        <button class="btn btn-sm btn-outline-secondary" id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                                    </div>
+                                </div>
+                                <div class="calendar-days" id="calendarDays">
+                                    <!-- Calendar days will be generated by JavaScript -->
+                                </div>
+                                <div class="mt-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="available me-2 p-1">Available</div>
+                                        <div class="booked me-2 p-1">Booked</div>
+                                        <div class="selected me-2 p-1">Selected</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Room Categories -->
+    <section class="py-5" id="rooms">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title" style="color: var(--primary-color);">Our Room Categories</h2>
+                    <p class="text-muted">Choose from our luxurious room options</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- Deluxe Room -->
+                <div class="col-md-4">
+                    <div class="room-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="room-img" alt="Deluxe Room">
+                            <div class="room-price">$199/night</div>
+                        </div>
+                        <div class="p-4">
+                            <h4>Deluxe Room</h4>
+                            <p>Spacious room with garden view, king-size bed, and modern amenities. Perfect for couples and solo travelers.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-wifi text-secondary me-2"></i> Free High-Speed WiFi</li>
+                                <li><i class="fas fa-tv text-secondary me-2"></i> 42" LED TV</li>
+                                <li><i class="fas fa-coffee text-secondary me-2"></i> Tea/Coffee Maker</li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100 book-room-btn" data-room="deluxe">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Super Deluxe Room -->
+                <div class="col-md-4">
+                    <div class="room-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80" class="room-img" alt="Super Deluxe Room">
+                            <div class="room-price">$299/night</div>
+                        </div>
+                        <div class="p-4">
+                            <h4>Super Deluxe Room</h4>
+                            <p>Luxurious room with balcony, panoramic views, premium bedding, and enhanced amenities for a superior stay.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-wifi text-secondary me-2"></i> Free High-Speed WiFi</li>
+                                <li><i class="fas fa-hot-tub text-secondary me-2"></i> Jacuzzi</li>
+                                <li><i class="fas fa-utensils text-secondary me-2"></i> Mini Bar</li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100 book-room-btn" data-room="super-deluxe">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Suite Room -->
+                <div class="col-md-4">
+                    <div class="room-card">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80" class="room-img" alt="Suite Room">
+                            <div class="room-price">$499/night</div>
+                        </div>
+                        <div class="p-4">
+                            <h4>Suite Room</h4>
+                            <p>Our most luxurious offering with separate living area, premium views, and exclusive services for an unforgettable experience.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-wifi text-secondary me-2"></i> Free High-Speed WiFi</li>
+                                <li><i class="fas fa-swimming-pool text-secondary me-2"></i> Private Pool Access</li>
+                                <li><i class="fas fa-concierge-bell text-secondary me-2"></i> Butler Service</li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100 book-room-btn" data-room="suite">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="py-5 bg-light" id="gallery">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title" style="color: var(--primary-color);">Photo Gallery</h2>
+                    <p class="text-muted">Explore our beautiful property and amenities</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="gallery-img" alt="Hotel Lobby">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2068&q=80" class="gallery-img" alt="Swimming Pool">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="gallery-img" alt="Restaurant">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2080&q=80" class="gallery-img" alt="Spa">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80" class="gallery-img" alt="Conference Room">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1549451371-64aa98a6f660?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="gallery-img" alt="Gym">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="story-section" id="story">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=2067&q=80" class="founder-img" alt="Hotel Founders">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="mb-4" style="color: var(--primary-color);">Our Story</h2>
+                    <p class="lead">Welcome to Hotel, where our passion for hospitality meets luxury.</p>
+                    <p>Founded in 2010 by partners Alex Johnson and Maria Rodriguez, Hotel began as a dream to create a sanctuary for travelers seeking both comfort and elegance. What started as a small 10-room boutique hotel has now grown into a 50-room luxury establishment, renowned for its exceptional service and attention to detail.</p>
+                    <p>Our journey began when Alex and Maria, both seasoned hospitality professionals, decided to combine their expertise to create a unique hotel experience. They envisioned a place where guests would feel at home while enjoying premium amenities and personalized service.</p>
+                    <p>Over the years, Grand Vista has received numerous awards including "Best Luxury Hotel 2022" and "Excellence in Hospitality 2021". Our commitment to sustainability and community engagement has been recognized with the "Green Hotel Certification" for three consecutive years.</p>
+                    <p>Today, we continue to evolve while staying true to our founding principles: exceptional service, attention to detail, and creating memorable experiences for every guest.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials & Awards -->
+    <section class="py-5" id="testimonials">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title" style="color: var(--primary-color);">Guest Testimonials & Awards</h2>
+                    <p class="text-muted">See what our guests say about us</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "Absolutely stunning property with exceptional service. The suite was immaculate and the views were breathtaking. We'll definitely be back!"
+                        </div>
+                        <div class="testimonial-author">
+                            <h5>Michael Thompson</h5>
+                            <p class="text-muted mb-0">New York, USA</p>
+                            <div class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "The attention to detail at Grand Vista is remarkable. From the welcome drink to the turn-down service, everything was perfect. Highly recommended!"
+                        </div>
+                        <div class="testimonial-author">
+                            <h5>Sarah Williams</h5>
+                            <p class="text-muted mb-0">London, UK</p>
+                            <div class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "We celebrated our anniversary here and the staff went above and beyond to make it special. The romantic dinner setup on our balcony was unforgettable."
+                        </div>
+                        <div class="testimonial-author">
+                            <h5>James & Emily Chen</h5>
+                            <p class="text-muted mb-0">Singapore</p>
+                            <div class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Awards Section -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="text-center mb-4" style="color: var(--primary-color);">Awards & Achievements</h3>
+                    <div class="row text-center">
+                        <div class="col-md-3 col-6 mb-4">
+                            <div class="p-3 border rounded">
+                                <i class="fas fa-award fa-3x text-secondary mb-3"></i>
+                                <h5>Best Luxury Hotel 2022</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-4">
+                            <div class="p-3 border rounded">
+                                <i class="fas fa-leaf fa-3x text-secondary mb-3"></i>
+                                <h5>Green Hotel Certification</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-4">
+                            <div class="p-3 border rounded">
+                                <i class="fas fa-heart fa-3x text-secondary mb-3"></i>
+                                <h5>Guest Choice Award 2023</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-4">
+                            <div class="p-3 border rounded">
+                                <i class="fas fa-medal fa-3x text-secondary mb-3"></i>
+                                <h5>Excellence in Hospitality</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restaurant Section -->
+    <section class="py-5 bg-light" id="restaurant">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title" style="color: var(--primary-color);">Vista Restaurant</h2>
+                    <p class="text-muted">Experience culinary excellence at our ground-floor restaurant</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h4 class="mb-4" style="color: var(--accent-color);">Our Menu</h4>
+                    
+                    <div class="mb-4">
+                        <h5 class="border-bottom pb-2">Starters</h5>
+                        <div class="menu-item">
+                            <div class="d-flex justify-content-between">
+                                <span class="menu-item-name">Truffle Arancini</span>
+                                <span class="menu-item-price">$16</span>
+                            </div>
+                            <p class="text-muted small">Crispy risotto balls with black truffle and mozzarella</p>
+                        </div>
+                        <div class="menu-item">
+                            <div class="d-flex justify-content-between">
+                                <span class="menu-item-name">Seafood Platter</span>
+                                <span class="menu-item-price">$24</span>
+                            </div>
+                            <p class="text-muted small">Fresh oysters, prawns, and crab with lemon aioli</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5 class="border-bottom pb-2">Main Courses</h5>
+                        <div class="menu-item">
+                            <div class="d-flex justify-content-between">
+                                <span class="menu-item-name">Grilled Salmon</span>
+                                <span class="menu-item-price">$32</span>
+                            </div>
+                            <p class="text-muted small">Atlantic salmon with roasted vegetables and dill sauce</p>
+                        </div>
+                        <div class="menu-item">
+                            <div class="d-flex justify-content-between">
+                                <span class="menu-item-name">Wagyu Beef Tenderloin</span>
+                                <span class="menu-item-price">$48</span>
+                            </div>
+                            <p class="text-muted small">Premium Australian wagyu with truffle mashed potatoes</p>
+                        </div>
+                        <div class="menu-item">
+                            <div class="d-flex justify-content-between">
+                                <span class="menu-item-name">Wild Mushroom Risotto</span>
+                                <span class="menu-item-price">$26</span>
+                            </div>
+                            <p class="text-muted small">Arborio rice with seasonal wild mushrooms and parmesan</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h5 class="border-bottom pb-2">Desserts</h5>
+                        <div class="menu-item">
+                            <div class="d-flex justify-content-between">
+                                <span class="menu-item-name">Chocolate Soufflé</span>
+                                <span class="menu-item-price">$14</span>
+                            </div>
+                            <p class="text-muted small">Warm chocolate soufflé with vanilla ice cream</p>
+                        </div>
+                        <div class="menu-item">
+                            <div class="d-flex justify-content-between">
+                                <span class="menu-item-name">Tiramisu</span>
+                                <span class="menu-item-price">$12</span>
+                            </div>
+                            <p class="text-muted small">Classic Italian dessert with espresso and mascarpone</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="p-4 border rounded bg-white">
+                        <h4 class="mb-4" style="color: var(--accent-color);">Place an Order</h4>
+                        <p class="mb-4">Order from our restaurant for in-room dining or pick-up. Open daily from 7:00 AM to 11:00 PM.</p>
+                        
+                        <form id="restaurantOrderForm">
+                            <div class="mb-3">
+                                <label for="orderName" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="orderName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="orderRoom" class="form-label">Room Number (if applicable)</label>
+                                <input type="text" class="form-control" id="orderRoom">
+                            </div>
+                            <div class="mb-3">
+                                <label for="orderItems" class="form-label">Select Items</label>
+                                <select class="form-select" id="orderItems" multiple>
+                                    <option value="truffle_arancini">Truffle Arancini - $16</option>
+                                    <option value="seafood_platter">Seafood Platter - $24</option>
+                                    <option value="grilled_salmon">Grilled Salmon - $32</option>
+                                    <option value="wagyu_beef">Wagyu Beef Tenderloin - $48</option>
+                                    <option value="mushroom_risotto">Wild Mushroom Risotto - $26</option>
+                                    <option value="chocolate_souffle">Chocolate Soufflé - $14</option>
+                                    <option value="tiramisu">Tiramisu - $12</option>
+                                </select>
+                                <div class="form-text">Hold Ctrl (or Cmd on Mac) to select multiple items</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="orderTime" class="form-label">Preferred Delivery/Pick-up Time</label>
+                                <input type="time" class="form-control" id="orderTime" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="specialInstructions" class="form-label">Special Instructions</label>
+                                <textarea class="form-control" id="specialInstructions" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn booking-btn w-100">
+                                <i class="fas fa-utensils me-2"></i>Place Order
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="footer-heading">Treebo</h4>
+                    <p>Luxury accommodations with world-class amenities and exceptional service. Your perfect getaway destination.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <a href="#home" class="footer-link">Home</a>
+                    <a href="#rooms" class="footer-link">Rooms & Suites</a>
+                    <a href="#gallery" class="footer-link">Photo Gallery</a>
+                    <a href="#restaurant" class="footer-link">Restaurant</a>
+                    <a href="#story" class="footer-link">Our Story</a>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> 123 Luxury Avenue, Vista City</p>
+                    <p><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@Treebo.com</p>
+                    <p><i class="fas fa-clock me-2"></i> 24/7 Reception</p>
+                    
+                    <div class="mt-4">
+                        <a href="#booking" class="btn booking-btn">
+                            <i class="fas fa-calendar-alt me-2"></i>Book Your Stay
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5 pt-4 border-top">
+                <div class="col-md-6 text-center text-md-start">
+                    <p>&copy; 2023 Hotel. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="footer-link me-3">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap & JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Booking form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const checkIn = document.getElementById('checkIn').value;
+            const checkOut = document.getElementById('checkOut').value;
+            const roomType = document.getElementById('roomType').value;
+            
+            if (!checkIn || !checkOut) {
+                alert('Please select both check-in and check-out dates.');
+                return;
+            }
+            
+            // Show availability calendar
+            document.getElementById('availabilityCalendar').style.display = 'block';
+            generateCalendar();
+            
+            // Scroll to calendar
+            document.getElementById('availabilityCalendar').scrollIntoView({ behavior: 'smooth' });
+            
+            // In a real implementation, this would check availability from a server
+            console.log('Checking availability for:', { checkIn, checkOut, roomType });
+        });
+
+        // Book room buttons
+        document.querySelectorAll('.book-room-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const roomType = this.getAttribute('data-room');
+                document.getElementById('roomType').value = roomType;
+                
+                // Scroll to booking form
+                document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+                
+                // Set focus on check-in date
+                document.getElementById('checkIn').focus();
+            });
+        });
+
+        // Restaurant order form
+        document.getElementById('restaurantOrderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('orderName').value;
+            const items = Array.from(document.getElementById('orderItems').selectedOptions)
+                .map(option => option.text);
+            
+            if (items.length === 0) {
+                alert('Please select at least one item from the menu.');
+                return;
+            }
+            
+            alert(`Thank you ${name}! Your order has been placed. We will deliver it at your requested time.`);
+            this.reset();
+        });
+
+        // Calendar functionality
+        let currentDate = new Date();
+        
+        function generateCalendar() {
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+            
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            
+            document.getElementById('selectedMonth').textContent = `${monthNames[month]} ${year}`;
+            
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const daysInMonth = lastDay.getDate();
+            
+            // Get the day of the week for the first day (0 = Sunday, 1 = Monday, etc.)
+            const startingDay = firstDay.getDay();
+            
+            const calendarDays = document.getElementById('calendarDays');
+            calendarDays.innerHTML = '';
+            
+            // Add day labels
+            const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            dayLabels.forEach(label => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day fw-bold';
+                dayElement.textContent = label;
+                calendarDays.appendChild(dayElement);
+            });
+            
+            // Add empty cells for days before the first day of the month
+            for (let i = 0; i < startingDay; i++) {
+                const emptyElement = document.createElement('div');
+                emptyElement.className = 'calendar-day';
+                calendarDays.appendChild(emptyElement);
+            }
+            
+            // Add days of the month
+            const today = new Date();
+            const checkIn = document.getElementById('checkIn').value;
+            const checkOut = document.getElementById('checkOut').value;
+            
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                
+                // Create date string for comparison
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                
+                // Mark today
+                if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
+                    dayElement.classList.add('selected');
+                }
+                
+                // Mark selected check-in/check-out dates
+                if (dateStr === checkIn || dateStr === checkOut) {
+                    dayElement.classList.add('selected');
+                }
+                
+                // Randomly mark some days as booked (for demo purposes)
+                // In a real implementation, this would come from a database
+                const isBooked = Math.random() > 0.7;
+                const isAvailable = Math.random() > 0.3;
+                
+                if (isBooked) {
+                    dayElement.classList.add('booked');
+                } else if (isAvailable) {
+                    dayElement.classList.add('available');
+                    dayElement.addEventListener('click', function() {
+                        // Toggle selection
+                        if (this.classList.contains('selected')) {
+                            this.classList.remove('selected');
+                        } else {
+                            this.classList.add('selected');
+                        }
+                    });
+                }
+                
+                calendarDays.appendChild(dayElement);
+            }
+        }
+        
+        // Previous month button
+        document.getElementById('prevMonth').addEventListener('click', function() {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            generateCalendar();
+        });
+        
+        // Next month button
+        document.getElementById('nextMonth').addEventListener('click', function() {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            generateCalendar();
+        });
+        
+        // Set minimum date for check-in to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkIn').setAttribute('min', today);
+        
+        // Update check-out min date when check-in changes
+        document.getElementById('checkIn').addEventListener('change', function() {
+            const checkInDate = this.value;
+            document.getElementById('checkOut').setAttribute('min', checkInDate);
+            
+            // If check-out is before new check-in, clear it
+            if (document.getElementById('checkOut').value < checkInDate) {
+                document.getElementById('checkOut').value = '';
+            }
+        });
+        
+        // Initialize calendar if needed
+        if (document.getElementById('availabilityCalendar').style.display === 'block') {
+            generateCalendar();
+        }
+    </script>
+</body>
+</html>

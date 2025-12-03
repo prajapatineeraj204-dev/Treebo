@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms & Suites | Grand Vista Hotel</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a3d62;
+            --secondary-color: #f9c851;
+            --accent-color: #3c6382;
+            --light-color: #f8f9fa;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        /* Header & Navigation */
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color) !important;
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 8px 0;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 8px;
+            color: var(--dark-color) !important;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        /* Rooms Hero Banner */
+        .rooms-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(10, 61, 98, 0.85), rgba(10, 61, 98, 0.8)), url('https://images.unsplash.com/photo-1584132967334-10e028bd69f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-top: 76px;
+        }
+        
+        .rooms-hero-content {
+            color: white;
+            text-align: center;
+        }
+        
+        .rooms-hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .rooms-hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Room Categories */
+        .room-category-section {
+            padding: 80px 0;
+        }
+        
+        .category-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .category-header h2 {
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .category-header h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        /* Room Card */
+        .room-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            transition: transform 0.5s, box-shadow 0.5s;
+            background: white;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .room-image-container {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .room-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .room-card:hover .room-image {
+            transform: scale(1.05);
+        }
+        
+        .room-price-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary-color);
+            color: var(--dark-color);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .room-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .room-content {
+            padding: 30px;
+        }
+        
+        .room-title {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .room-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .room-features {
+            margin-bottom: 25px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            background-color: rgba(10, 61, 98, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: var(--primary-color);
+        }
+        
+        .room-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .book-btn {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            border: none;
+            padding: 10px 30px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        
+        .book-btn:hover {
+            background-color: #e6b63e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .view-details-btn {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .view-details-btn:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Room Comparison Table */
+        .comparison-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .table-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .table-row {
+            display: flex;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .table-row:last-child {
+            border-bottom: none;
+        }
+        
+        .table-cell {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .table-row-header {
+            background-color: rgba(10, 61, 98, 0.05);
+            font-weight: 600;
+            color: var(--primary-color);
+            justify-content: flex-start;
+        }
+        
+        .feature-available {
+            color: #2e7d32;
+            font-size: 1.2rem;
+        }
+        
+        .feature-not-available {
+            color: #c62828;
+            font-size: 1.2rem;
+        }
+        
+        /* Amenities Section */
+        .amenities-section {
+            padding: 80px 0;
+        }
+        
+        .amenity-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        
+        .amenity-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .amenity-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(249, 200, 81, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+        }
+        
+        /* Room Gallery */
+        .room-gallery-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            height: 250px;
+            position: relative;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 61, 98, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+        
+        /* Booking Modal */
+        .booking-modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+            border: none;
+        }
+        
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 25px 30px;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-heading {
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-link {
+            color: #bbb;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .rooms-hero {
+                height: 50vh;
+                margin-top: 70px;
+            }
+            
+            .rooms-hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .room-actions {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .table-row {
+                flex-direction: column;
+            }
+            
+            .table-cell {
+                justify-content: flex-start;
+                padding: 15px;
+            }
+            
+            .table-row-header {
+                background-color: rgba(10, 61, 98, 0.1);
+                font-weight: 700;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-hotel me-2"></i>Treebo
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="room.html">Rooms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#story">Our Story</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resturant.html">Restaurant</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn booking-btn" href="#booking" style="background-color: var(--secondary-color); color: var(--dark-color); border: none; padding: 10px 25px; font-weight: 600; border-radius: 50px;">
+                            <i class="fas fa-calendar-alt me-2"></i>Book Now
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Rooms Hero Banner -->
+    <section class="rooms-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="rooms-hero-content">
+                        <h1>Luxury Rooms & Suites</h1>
+                        <p class="lead">Experience unparalleled comfort in our meticulously designed accommodations</p>
+                        <p>Each room is thoughtfully curated to provide the perfect blend of luxury, comfort, and functionality</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Room Categories -->
+    <section class="room-category-section">
+        <div class="container">
+            <div class="category-header">
+                <h2>Our Room Categories</h2>
+                <p class="text-muted mt-3">Choose from our exquisite selection of rooms and suites</p>
+            </div>
+            
+            <!-- Deluxe Room -->
+            <div class="room-card">
+                <div class="row g-0">
+                    <div class="col-lg-6">
+                        <div class="room-image-container">
+                            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="room-image" alt="Deluxe Room">
+                            <div class="room-price-tag">$199 / night</div>
+                            <div class="room-badge">MOST POPULAR</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="room-content">
+                            <h3 class="room-title">Deluxe Room</h3>
+                            <p class="room-description">Our Deluxe Rooms offer a perfect blend of comfort and style. Featuring garden views, king-size beds, and elegant contemporary decor, these rooms provide a serene retreat after a day of exploration.</p>
+                            
+                            <div class="room-features">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-ruler-combined"></i>
+                                    </div>
+                                    <span>350 sq. ft.</span>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-user-friends"></i>
+                                    </div>
+                                    <span>Up to 2 guests</span>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-bed"></i>
+                                    </div>
+                                    <span>King-size bed or Twin beds</span>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-mountain"></i>
+                                    </div>
+                                    <span>Garden view</span>
+                                </div>
+                            </div>
+                            
+                            <div class="room-actions">
+                                <button class="book-btn" data-bs-toggle="modal" data-bs-target="#bookingModal" data-room="Deluxe Room" data-price="199">
+                                    <i class="fas fa-calendar-check me-2"></i>Book Now
+                                </button>
+                                <a href="#deluxe-details" class="view-details-btn">
+                                    View Details <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Super Deluxe Room -->
+            <div class="room-card">
+                <div class="row g-0 flex-lg-row-reverse">
+                    <div class="col-lg-6">
+                        <div class="room-image-container">
+                            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80" class="room-image" alt="Super Deluxe Room">
+                            <div class="room-price-tag">$299 / night</div>
+                            <div class="room-badge">BALCONY VIEW</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="room-content">
+                            <h3 class="room-title">Super Deluxe Room</h3>
+                            <p class="room-description">Elevate your stay with our Super Deluxe Rooms featuring private balconies with panoramic views, premium bedding, and enhanced amenities. Perfect for those seeking extra space and luxury.</p>
+                            
+                            <div class="room-features">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-ruler-combined"></i>
+                                    </div>
+                                    <span>450 sq. ft.</span>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-user-friends"></i>
+                                    </div>
+                                    <span>Up to 3 guests</span>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-bed"></i>
+                                    </div>
+                                    <span>King-size bed + Sofa bed</span>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-umbrella-beach"></i>
+                                    </div>
+                                    <span>Panoramic city view</span>
+                                </div>
+                            </div>
+                            
+                            <div class="room-actions">
+                                <button class="book-btn" data-bs-toggle="modal" data-bs-target="#bookingModal" data-room="Super Deluxe Room" data-price="299">
+                                    <i class="fas fa-calendar-check me-2"></i>Book Now
+                                </button>
+                                <a href="#super-deluxe-details" class="view-details-btn">
+                                    View Details <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Suite Room -->
+            <div class="room-card">
+                <div class="row g-0">
+                    <div class="col-lg-6">
+                        <div class="room-image-container">
+                            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80" class="room-image" alt="Suite Room">
+                            <div class="room-price-tag">$499 / night</div>
+                            <div class="room-badge">LUXURY SUITE</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="room-content">
+                            <h3 class="room-title">Suite Room</h3>
+                            <p class="room-description">Our most luxurious offering features a separate living area, premium city views, and exclusive services. The Suite Room provides the ultimate in comfort and sophistication for an unforgettable stay.</p>
+                            
+                            <div class="room-features">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-ruler-combined"></i>
+                                    </div>
+                                    <span>650 sq. ft.</span>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-user-friends"></i>
+                                    </div>
+                                    <span>Up to 4 guests</span>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-bed"></i>
+                                    </div>
+                                    <span>King-size bed + Additional bedroom</span>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-city"></i>
+                                    </div>
+                                    <span>Premium city skyline view</span>
+                                </div>
+                            </div>
+                            
+                            <div class="room-actions">
+                                <button class="book-btn" data-bs-toggle="modal" data-bs-target="#bookingModal" data-room="Suite Room" data-price="499">
+                                    <i class="fas fa-calendar-check me-2"></i>Book Now
+                                </button>
+                                <a href="#suite-details" class="view-details-btn">
+                                    View Details <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Room Comparison Table -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="category-header">
+                <h2>Room Comparison</h2>
+                <p class="text-muted mt-3">Compare features across our room categories</p>
+            </div>
+            
+            <div class="comparison-table">
+                <div class="table-header">
+                    <h3 class="mb-0">Room Features Comparison</h3>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell table-row-header">Room Size</div>
+                    <div class="table-cell">350 sq. ft.</div>
+                    <div class="table-cell">450 sq. ft.</div>
+                    <div class="table-cell">650 sq. ft.</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell table-row-header">Maximum Guests</div>
+                    <div class="table-cell">2</div>
+                    <div class="table-cell">3</div>
+                    <div class="table-cell">4</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell table-row-header">View</div>
+                    <div class="table-cell">Garden</div>
+                    <div class="table-cell">City Panorama</div>
+                    <div class="table-cell">Premium Skyline</div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell table-row-header">Balcony</div>
+                    <div class="table-cell"><i class="fas fa-times feature-not-available"></i></div>
+                    <div class="table-cell"><i class="fas fa-check feature-available"></i></div>
+                    <div class="table-cell"><i class="fas fa-check feature-available"></i></div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell table-row-header">Separate Living Area</div>
+                    <div class="table-cell"><i class="fas fa-times feature-not-available"></i></div>
+                    <div class="table-cell"><i class="fas fa-times feature-not-available"></i></div>
+                    <div class="table-cell"><i class="fas fa-check feature-available"></i></div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell table-row-header">Jacuzzi</div>
+                    <div class="table-cell"><i class="fas fa-times feature-not-available"></i></div>
+                    <div class="table-cell"><i class="fas fa-check feature-available"></i></div>
+                    <div class="table-cell"><i class="fas fa-check feature-available"></i></div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell table-row-header">Mini Bar</div>
+                    <div class="table-cell"><i class="fas fa-times feature-not-available"></i></div>
+                    <div class="table-cell"><i class="fas fa-check feature-available"></i></div>
+                    <div class="table-cell"><i class="fas fa-check feature-available"></i></div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell table-row-header">Butler Service</div>
+                    <div class="table-cell"><i class="fas fa-times feature-not-available"></i></div>
+                    <div class="table-cell"><i class="fas fa-times feature-not-available"></i></div>
+                    <div class="table-cell"><i class="fas fa-check feature-available"></i></div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell table-row-header">Private Pool Access</div>
+                    <div class="table-cell"><i class="fas fa-times feature-not-available"></i></div>
+                    <div class="table-cell"><i class="fas fa-times feature-not-available"></i></div>
+                    <div class="table-cell"><i class="fas fa-check feature-available"></i></div>
+                </div>
+                
+                <div class="table-row">
+                    <div class="table-cell table-row-header">Price per Night</div>
+                    <div class="table-cell"><strong>$199</strong></div>
+                    <div class="table-cell"><strong>$299</strong></div>
+                    <div class="table-cell"><strong>$499</strong></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section class="amenities-section">
+        <div class="container">
+            <div class="category-header">
+                <h2>Room Amenities</h2>
+                <p class="text-muted mt-3">All our rooms include premium amenities for your comfort</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <h5>High-Speed WiFi</h5>
+                        <p class="text-muted small">Complimentary high-speed internet access throughout your stay</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i class="fas fa-tv"></i>
+                        </div>
+                        <h5>Smart TV</h5>
+                        <p class="text-muted small">42" LED TV with streaming services and international channels</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <h5>Tea/Coffee Maker</h5>
+                        <p class="text-muted small">In-room coffee and tea making facilities with premium selections</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <h5>Air Conditioning</h5>
+                        <p class="text-muted small">Individual climate control for your personal comfort</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i class="fas fa-shower"></i>
+                        </div>
+                        <h5>Rain Shower</h5>
+                        <p class="text-muted small">Luxury rain shower with premium bath amenities</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h5>In-room Safe</h5>
+                        <p class="text-muted small">Digital safe for securing your valuables during your stay</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i class="fas fa-concierge-bell"></i>
+                        </div>
+                        <h5>24/7 Room Service</h5>
+                        <p class="text-muted small">Round-the-clock dining with our extensive room service menu</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h5>Laundry Service</h5>
+                        <p class="text-muted small">Same-day laundry and dry cleaning services available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Room Gallery -->
+    <section class="room-gallery-section">
+        <div class="container">
+            <div class="category-header">
+                <h2>Room Gallery</h2>
+                <p class="text-muted mt-3">Take a closer look at our beautifully appointed rooms</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="gallery-img" alt="Deluxe Room Bathroom">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1568495248636-6432b97bd949?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80" class="gallery-img" alt="Suite Living Area">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="gallery-img" alt="Super Deluxe Balcony">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80" class="gallery-img" alt="Suite Bedroom">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="gallery-img" alt="Deluxe Room Workspace">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="gallery-img" alt="Room Service">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content booking-modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookingModalLabel">Book Your Stay</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="mb-4" id="selectedRoomTitle" style="color: var(--primary-color);">Deluxe Room</h4>
+                    
+                    <form id="roomBookingForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="modalCheckIn" class="form-label">Check-in Date</label>
+                                <input type="date" class="form-control" id="modalCheckIn" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="modalCheckOut" class="form-label">Check-out Date</label>
+                                <input type="date" class="form-control" id="modalCheckOut" required>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="modalRoomType" class="form-label">Room Type</label>
+                                <select class="form-select" id="modalRoomType" required>
+                                    <option value="deluxe">Deluxe Room</option>
+                                    <option value="super-deluxe">Super Deluxe Room</option>
+                                    <option value="suite">Suite Room</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="modalGuests" class="form-label">Number of Guests</label>
+                                <select class="form-select" id="modalGuests" required>
+                                    <option value="1">1 Guest</option>
+                                    <option value="2" selected>2 Guests</option>
+                                    <option value="3">3 Guests</option>
+                                    <option value="4">4 Guests</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="modalFirstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="modalFirstName" required>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="modalLastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="modalLastName" required>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="modalEmail" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="modalEmail" required>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="modalPhone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="modalPhone" required>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="modalSpecialRequests" class="form-label">Special Requests</label>
+                                <textarea class="form-control" id="modalSpecialRequests" rows="3" placeholder="Any special requests or requirements..."></textarea>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="border rounded p-3 mb-3">
+                                    <h6 class="mb-3">Booking Summary</h6>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Room:</span>
+                                        <span id="summaryRoom">Deluxe Room</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Price per night:</span>
+                                        <span id="summaryPrice">$199</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Nights:</span>
+                                        <span id="summaryNights">0</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between fw-bold border-top pt-2">
+                                        <span>Total:</span>
+                                        <span id="summaryTotal">$0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <button type="submit" class="btn book-btn w-100 py-3">
+                                    <i class="fas fa-calendar-check me-2"></i>Confirm Booking
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="footer-heading">Grand Vista Hotel</h4>
+                    <p>Luxury accommodations with world-class amenities and exceptional service. Your perfect getaway destination.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="rooms.html" class="footer-link">Rooms & Suites</a>
+                    <a href="index.html#gallery" class="footer-link">Photo Gallery</a>
+                    <a href="restaurant.html" class="footer-link">Restaurant</a>
+                    <a href="index.html#story" class="footer-link">Our Story</a>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> 123 Luxury Avenue, Vista City</p>
+                    <p><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@Treebo.com</p>
+                    <p><i class="fas fa-clock me-2"></i> 24/7 Reception</p>
+                    
+                    <div class="mt-4">
+                        <button class="btn booking-btn" data-bs-toggle="modal" data-bs-target="#bookingModal" style="background-color: var(--secondary-color); color: var(--dark-color); border: none; padding: 10px 25px; font-weight: 600; border-radius: 50px;">
+                            <i class="fas fa-calendar-alt me-2"></i>Book Your Stay
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5 pt-4 border-top">
+                <div class="col-md-6 text-center text-md-start">
+                    <p>&copy; 2023 Grand Vista Hotel. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="footer-link me-3">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap & JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Set minimum date for booking to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('modalCheckIn').setAttribute('min', today);
+        
+        // Set default check-in to tomorrow
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const tomorrowStr = tomorrow.toISOString().split('T')[0];
+        document.getElementById('modalCheckIn').value = tomorrowStr;
+        
+        // Set default check-out to day after tomorrow
+        const dayAfterTomorrow = new Date();
+        dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
+        const dayAfterTomorrowStr = dayAfterTomorrow.toISOString().split('T')[0];
+        document.getElementById('modalCheckOut').value = dayAfterTomorrowStr;
+        
+        // Update check-out min date when check-in changes
+        document.getElementById('modalCheckIn').addEventListener('change', function() {
+            const checkInDate = this.value;
+            document.getElementById('modalCheckOut').setAttribute('min', checkInDate);
+            
+            // If check-out is before new check-in, update it
+            if (document.getElementById('modalCheckOut').value < checkInDate) {
+                const newCheckOut = new Date(checkInDate);
+                newCheckOut.setDate(newCheckOut.getDate() + 1);
+                document.getElementById('modalCheckOut').value = newCheckOut.toISOString().split('T')[0];
+            }
+            
+            updateBookingSummary();
+        });
+        
+        document.getElementById('modalCheckOut').addEventListener('change', updateBookingSummary);
+        document.getElementById('modalRoomType').addEventListener('change', updateBookingSummary);
+        
+        // Update booking summary
+        function updateBookingSummary() {
+            const checkIn = new Date(document.getElementById('modalCheckIn').value);
+            const checkOut = new Date(document.getElementById('modalCheckOut').value);
+            const roomType = document.getElementById('modalRoomType').value;
+            
+            // Calculate nights
+            const timeDiff = checkOut.getTime() - checkIn.getTime();
+            const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            
+            // Get room price based on type
+            let pricePerNight = 199;
+            let roomName = "Deluxe Room";
+            
+            if (roomType === 'super-deluxe') {
+                pricePerNight = 299;
+                roomName = "Super Deluxe Room";
+            } else if (roomType === 'suite') {
+                pricePerNight = 499;
+                roomName = "Suite Room";
+            }
+            
+            // Update summary
+            document.getElementById('summaryRoom').textContent = roomName;
+            document.getElementById('summaryPrice').textContent = '$' + pricePerNight;
+            document.getElementById('summaryNights').textContent = nights;
+            
+            const total = pricePerNight * nights;
+            document.getElementById('summaryTotal').textContent = '$' + total;
+        }
+        
+        // Initialize summary
+        updateBookingSummary();
+        
+        // Book now buttons
+        document.querySelectorAll('.book-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const room = this.getAttribute('data-room');
+                const price = this.getAttribute('data-price');
+                
+                // Set room type in modal
+                let roomTypeValue = 'deluxe';
+                if (room === 'Super Deluxe Room') roomTypeValue = 'super-deluxe';
+                if (room === 'Suite Room') roomTypeValue = 'suite';
+                
+                document.getElementById('modalRoomType').value = roomTypeValue;
+                document.getElementById('selectedRoomTitle').textContent = room;
+                
+                // Update booking summary
+                updateBookingSummary();
+            });
+        });
+        
+        // Booking form submission
+        document.getElementById('roomBookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('modalFirstName').value;
+            const roomType = document.getElementById('modalRoomType').value;
+            const checkIn = document.getElementById('modalCheckIn').value;
+            const checkOut = document.getElementById('modalCheckOut').value;
+            const total = document.getElementById('summaryTotal').textContent;
+            
+            // Format dates
+            const checkInDate = new Date(checkIn);
+            const checkOutDate = new Date(checkOut);
+            const formattedCheckIn = checkInDate.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            const formattedCheckOut = checkOutDate.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            // Get room name
+            let roomName = "Deluxe Room";
+            if (roomType === 'super-deluxe') roomName = "Super Deluxe Room";
+            if (roomType === 'suite') roomName = "Suite Room";
+            
+            // Show success message
+            alert(`Thank you ${firstName}!\n\nYour booking for the ${roomName} has been confirmed.\n\nCheck-in: ${formattedCheckIn}\nCheck-out: ${formattedCheckOut}\nTotal: ${total}\n\nA confirmation email has been sent to your email address.`);
+            
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('bookingModal'));
+            modal.hide();
+            
+            // Reset form
+            this.reset();
+            
+            // Reset dates to defaults
+            document.getElementById('modalCheckIn').value = tomorrowStr;
+            document.getElementById('modalCheckOut').value = dayAfterTomorrowStr;
+            document.getElementById('modalRoomType').value = 'deluxe';
+            updateBookingSummary();
+        });
+        
+        // Gallery image click effect
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src;
+                const roomType = this.querySelector('img').alt;
+                
+                // Create modal for larger image view
+                const modalHTML = `
+                    <div class="modal fade" id="imageModal" tabindex="-1">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content border-0">
+                                <div class="modal-header bg-dark text-white">
+                                    <h5 class="modal-title">${roomType}</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body p-0">
+                                    <img src="${imgSrc}" class="img-fluid w-100" alt="${roomType}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Remove existing modal if any
+                const existingModal = document.getElementById('imageModal');
+                if (existingModal) {
+                    existingModal.remove();
+                }
+                
+                // Add new modal to body
+                document.body.insertAdjacentHTML('beforeend', modalHTML);
+                
+                // Show modal
+                const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+                imageModal.show();
+            });
+        });
+    </script>
+</body>
+</html>

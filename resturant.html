@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Restaurant | Hotel</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a3d62;
+            --secondary-color: #f9c851;
+            --accent-color: #3c6382;
+            --light-color: #f8f9fa;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        /* Header & Navigation */
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color) !important;
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 8px 0;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 8px;
+            color: var(--dark-color) !important;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+        
+        /* Restaurant Hero Banner */
+        .restaurant-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(10, 61, 98, 0.85), rgba(10, 61, 98, 0.8)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-top: 76px;
+        }
+        
+        .restaurant-hero-content {
+            color: white;
+            text-align: center;
+        }
+        
+        .restaurant-hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .restaurant-hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Restaurant Info Section */
+        .restaurant-info {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .restaurant-hours {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-table tr {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .hours-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .hours-table td {
+            padding: 12px 0;
+        }
+        
+        .hours-table .day {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .hours-table .time {
+            text-align: right;
+            color: #666;
+        }
+        
+        /* Menu Categories */
+        .menu-category {
+            margin-bottom: 60px;
+        }
+        
+        .category-title {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+            position: relative;
+            color: var(--primary-color);
+        }
+        
+        .category-title:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        /* Menu Items */
+        .menu-item-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+        
+        .menu-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-item-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .menu-item-content {
+            padding: 20px;
+        }
+        
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .menu-item-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        
+        .menu-item-price {
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        
+        .menu-item-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .menu-item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .menu-tag {
+            background-color: #f0f8ff;
+            color: var(--accent-color);
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        
+        .menu-tag.vegetarian {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .menu-tag.spicy {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        
+        .menu-tag.recommended {
+            background-color: #fff8e1;
+            color: #ff8f00;
+        }
+        
+        .order-btn {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            border: none;
+            padding: 8px 20px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .order-btn:hover {
+            background-color: #e6b63e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Special Offers */
+        .special-offers {
+            background: linear-gradient(rgba(10, 61, 98, 0.9), rgba(10, 61, 98, 0.9)), url('https://images.unsplash.com/photo-1578474846511-04ba529f0b88?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .offer-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .offer-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .offer-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* Reservation Form */
+        .reservation-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .reservation-form {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-heading {
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-link {
+            color: #bbb;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .restaurant-hero {
+                height: 50vh;
+                margin-top: 70px;
+            }
+            
+            .restaurant-hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .reservation-form {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-hotel me-2"></i>Treebo
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="room.html">Rooms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#story">Our Story</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="resturant.html">Restaurant</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn booking-btn" href="index.html#booking" style="background-color: var(--secondary-color); color: var(--dark-color); border: none; padding: 10px 25px; font-weight: 600; border-radius: 50px;">Book Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Restaurant Hero Banner -->
+    <section class="restaurant-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="restaurant-hero-content">
+                        <h1>Vista Restaurant</h1>
+                        <p class="lead">Experience culinary excellence at our award-winning ground-floor restaurant</p>
+                        <p>Farm-to-table dining with panoramic views of the city skyline</p>
+                        <a href="#reservation" class="btn btn-light btn-lg mt-3" style="color: var(--primary-color); font-weight: 600;">
+                            <i class="fas fa-calendar-alt me-2"></i>Make a Reservation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restaurant Info & Hours -->
+    <section class="restaurant-info">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h2 class="mb-4" style="color: var(--primary-color);">A Dining Experience Like No Other</h2>
+                    <p class="lead mb-4">At Vista Restaurant, we believe that great food is an art form, and every meal should be a memorable experience.</p>
+                    <p>Our culinary team, led by Executive Chef Marco Rodriguez, sources the finest local ingredients to create dishes that are both innovative and deeply rooted in tradition. With a commitment to sustainability and seasonality, our menu changes regularly to showcase the best of what each season has to offer.</p>
+                    <p>Whether you're joining us for a romantic dinner, a business lunch, or a family celebration, our attentive staff will ensure your dining experience is nothing short of exceptional.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="fas fa-utensils fa-2x" style="color: var(--secondary-color);"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Fine Dining</h5>
+                                    <p class="text-muted mb-0">Elegant atmosphere</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="me-3">
+                                    <i class="fas fa-wine-glass-alt fa-2x" style="color: var(--secondary-color);"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Wine Pairing</h5>
+                                    <p class="text-muted mb-0">Expertly curated selection</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="restaurant-hours">
+                        <h3 class="mb-4" style="color: var(--primary-color);">Restaurant Hours</h3>
+                        <table class="hours-table">
+                            <tr>
+                                <td class="day">Monday - Thursday</td>
+                                <td class="time">7:00 AM - 10:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td class="day">Friday</td>
+                                <td class="time">7:00 AM - 11:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td class="day">Saturday</td>
+                                <td class="time">8:00 AM - 11:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td class="day">Sunday</td>
+                                <td class="time">8:00 AM - 10:00 PM</td>
+                            </tr>
+                        </table>
+                        
+                        <div class="mt-4 pt-3 border-top">
+                            <h5 class="mb-3" style="color: var(--accent-color);">Special Hours</h5>
+                            <p class="mb-2"><strong>Breakfast Buffet:</strong> 7:00 AM - 11:00 AM (Daily)</p>
+                            <p class="mb-2"><strong>Sunday Brunch:</strong> 11:00 AM - 3:00 PM</p>
+                            <p class="mb-0"><strong>Happy Hour:</strong> 4:00 PM - 7:00 PM (Mon-Fri)</p>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <p class="mb-1"><i class="fas fa-phone me-2"></i> <strong>Reservations:</strong> +1 (555) 123-4567</p>
+                            <p class="mb-0"><i class="fas fa-envelope me-2"></i> <strong>Email:</strong> restaurant@Treebo.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title" style="color: var(--primary-color);">Our Menu</h2>
+                    <p class="text-muted">Discover our culinary creations</p>
+                </div>
+            </div>
+            
+            <!-- Starters -->
+            <div class="menu-category">
+                <h3 class="category-title">Starters & Appetizers</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="menu-item-card">
+                            <img src="https://images.unsplash.com/photo-1563379091339-03246963d9d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="menu-item-img" alt="Truffle Arancini">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4 class="menu-item-name">Truffle Arancini</h4>
+                                    <h4 class="menu-item-price">$16</h4>
+                                </div>
+                                <div class="menu-item-tags">
+                                    <span class="menu-tag vegetarian">Vegetarian</span>
+                                    <span class="menu-tag recommended">Chef's Pick</span>
+                                </div>
+                                <p class="menu-item-description">Crispy risotto balls filled with black truffle and mozzarella, served with a saffron aioli.</p>
+                                <button class="order-btn add-to-order" data-item="Truffle Arancini" data-price="16">
+                                    <i class="fas fa-plus me-2"></i>Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="menu-item-card">
+                            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="menu-item-img" alt="Seafood Platter">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4 class="menu-item-name">Seafood Platter</h4>
+                                    <h4 class="menu-item-price">$24</h4>
+                                </div>
+                                <div class="menu-item-tags">
+                                    <span class="menu-tag">Seasonal</span>
+                                </div>
+                                <p class="menu-item-description">Fresh oysters, prawns, and crab served on ice with lemon aioli and cocktail sauce.</p>
+                                <button class="order-btn add-to-order" data-item="Seafood Platter" data-price="24">
+                                    <i class="fas fa-plus me-2"></i>Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="menu-item-card">
+                            <img src="https://images.unsplash.com/photo-1594041680534-e8c8cdebd659?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="menu-item-img" alt="Burrata Salad">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4 class="menu-item-name">Burrata Salad</h4>
+                                    <h4 class="menu-item-price">$18</h4>
+                                </div>
+                                <div class="menu-item-tags">
+                                    <span class="menu-tag vegetarian">Vegetarian</span>
+                                </div>
+                                <p class="menu-item-description">Creamy burrata cheese with heirloom tomatoes, fresh basil, and aged balsamic reduction.</p>
+                                <button class="order-btn add-to-order" data-item="Burrata Salad" data-price="18">
+                                    <i class="fas fa-plus me-2"></i>Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Courses -->
+            <div class="menu-category">
+                <h3 class="category-title">Main Courses</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="menu-item-card">
+                            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80" class="menu-item-img" alt="Grilled Salmon">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4 class="menu-item-name">Grilled Salmon</h4>
+                                    <h4 class="menu-item-price">$32</h4>
+                                </div>
+                                <div class="menu-item-tags">
+                                    <span class="menu-tag">Gluten Free</span>
+                                    <span class="menu-tag recommended">Chef's Pick</span>
+                                </div>
+                                <p class="menu-item-description">Atlantic salmon with roasted seasonal vegetables, lemon butter sauce, and dill.</p>
+                                <button class="order-btn add-to-order" data-item="Grilled Salmon" data-price="32">
+                                    <i class="fas fa-plus me-2"></i>Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="menu-item-card">
+                            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="menu-item-img" alt="Wagyu Beef Tenderloin">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4 class="menu-item-name">Wagyu Beef Tenderloin</h4>
+                                    <h4 class="menu-item-price">$48</h4>
+                                </div>
+                                <div class="menu-item-tags">
+                                    <span class="menu-tag">Signature Dish</span>
+                                </div>
+                                <p class="menu-item-description">Premium Australian wagyu with truffle mashed potatoes, asparagus, and red wine reduction.</p>
+                                <button class="order-btn add-to-order" data-item="Wagyu Beef Tenderloin" data-price="48">
+                                    <i class="fas fa-plus me-2"></i>Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="menu-item-card">
+                            <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="menu-item-img" alt="Wild Mushroom Risotto">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4 class="menu-item-name">Wild Mushroom Risotto</h4>
+                                    <h4 class="menu-item-price">$26</h4>
+                                </div>
+                                <div class="menu-item-tags">
+                                    <span class="menu-tag vegetarian">Vegetarian</span>
+                                </div>
+                                <p class="menu-item-description">Arborio rice with seasonal wild mushrooms, white wine, and parmesan cheese.</p>
+                                <button class="order-btn add-to-order" data-item="Wild Mushroom Risotto" data-price="26">
+                                    <i class="fas fa-plus me-2"></i>Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Desserts -->
+            <div class="menu-category">
+                <h3 class="category-title">Desserts</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="menu-item-card">
+                            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2068&q=80" class="menu-item-img" alt="Chocolate Soufflé">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4 class="menu-item-name">Chocolate Soufflé</h4>
+                                    <h4 class="menu-item-price">$14</h4>
+                                </div>
+                                <div class="menu-item-tags">
+                                    <span class="menu-tag">Made to Order</span>
+                                </div>
+                                <p class="menu-item-description">Warm chocolate soufflé with a molten center, served with vanilla bean ice cream.</p>
+                                <button class="order-btn add-to-order" data-item="Chocolate Soufflé" data-price="14">
+                                    <i class="fas fa-plus me-2"></i>Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="menu-item-card">
+                            <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=2068&q=80" class="menu-item-img" alt="Tiramisu">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4 class="menu-item-name">Tiramisu</h4>
+                                    <h4 class="menu-item-price">$12</h4>
+                                </div>
+                                <div class="menu-item-tags">
+                                    <span class="menu-tag">Classic</span>
+                                </div>
+                                <p class="menu-item-description">Layers of espresso-soaked ladyfingers and mascarpone cream, dusted with cocoa.</p>
+                                <button class="order-btn add-to-order" data-item="Tiramisu" data-price="12">
+                                    <i class="fas fa-plus me-2"></i>Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="menu-item-card">
+                            <img src="https://images.unsplash.com/photo-1559620192-032c64bc86af?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80" class="menu-item-img" alt="Crème Brûlée">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4 class="menu-item-name">Crème Brûlée</h4>
+                                    <h4 class="menu-item-price">$11</h4>
+                                </div>
+                                <div class="menu-item-tags">
+                                    <span class="menu-tag">Gluten Free</span>
+                                </div>
+                                <p class="menu-item-description">Classic vanilla bean custard with a caramelized sugar crust and fresh berries.</p>
+                                <button class="order-btn add-to-order" data-item="Crème Brûlée" data-price="11">
+                                    <i class="fas fa-plus me-2"></i>Add to Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section class="special-offers">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Special Offers</h2>
+                    <p class="text-light">Enjoy exclusive dining experiences</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="offer-card">
+                        <div class="offer-icon">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <h4>Happy Hour</h4>
+                        <p>Monday - Friday, 4:00 PM - 7:00 PM</p>
+                        <p>Enjoy 50% off selected drinks and appetizers at our bar.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="offer-card">
+                        <div class="offer-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h4>Sunday Brunch</h4>
+                        <p>Every Sunday, 11:00 AM - 3:00 PM</p>
+                        <p>Unlimited buffet with live cooking stations. $45 per person, children under 12 half price.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="offer-card">
+                        <div class="offer-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Romantic Dinner Package</h4>
+                        <p>Available every evening</p>
+                        <p>Three-course dinner for two with a bottle of wine. $120 per couple.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Cart & Reservation -->
+    <section class="reservation-section" id="reservation">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <!-- Order Cart -->
+                    <div class="reservation-form">
+                        <h3 class="mb-4" style="color: var(--primary-color);">Your Order</h3>
+                        <div id="orderCart" class="mb-4">
+                            <p class="text-muted text-center py-4">Your cart is empty. Add items from the menu.</p>
+                        </div>
+                        
+                        <div class="border-top pt-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Subtotal:</span>
+                                <span id="cartSubtotal">$0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span>Service Charge (10%):</span>
+                                <span id="cartService">$0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between fw-bold fs-5 border-top pt-2">
+                                <span>Total:</span>
+                                <span id="cartTotal">$0.00</span>
+                            </div>
+                        </div>
+                        
+                        <button class="btn order-btn w-100 mt-4" id="placeOrderBtn" disabled>
+                            <i class="fas fa-utensils me-2"></i>Place Order
+                        </button>
+                        
+                        <div class="mt-3 text-center">
+                            <small class="text-muted">Orders can be delivered to your room or prepared for pickup</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <!-- Reservation Form -->
+                    <div class="reservation-form">
+                        <h3 class="mb-4" style="color: var(--primary-color);">Make a Reservation</h3>
+                        <form id="reservationForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="resName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="resName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="resEmail" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="resEmail" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="resPhone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="resPhone" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="resGuests" class="form-label">Number of Guests</label>
+                                    <select class="form-select" id="resGuests" required>
+                                        <option value="1">1 Person</option>
+                                        <option value="2" selected>2 People</option>
+                                        <option value="3">3 People</option>
+                                        <option value="4">4 People</option>
+                                        <option value="5">5 People</option>
+                                        <option value="6">6 People</option>
+                                        <option value="7">7+ People</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="resDate" class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="resDate" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="resTime" class="form-label">Time</label>
+                                    <input type="time" class="form-control" id="resTime" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="resSpecial" class="form-label">Special Requests</label>
+                                    <textarea class="form-control" id="resSpecial" rows="3" placeholder="Dietary restrictions, allergies, or special occasions..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="roomService" value="yes">
+                                        <label class="form-check-label" for="roomService">
+                                            I would like room service (for hotel guests only)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn order-btn w-100 py-3">
+                                        <i class="fas fa-calendar-check me-2"></i>Confirm Reservation
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="footer-heading">Hotel</h4>
+                    <p>Luxury accommodations with world-class amenities and exceptional service. Your perfect getaway destination.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="index.html#rooms" class="footer-link">Rooms & Suites</a>
+                    <a href="index.html#gallery" class="footer-link">Photo Gallery</a>
+                    <a href="restaurant.html" class="footer-link">Restaurant</a>
+                    <a href="index.html#story" class="footer-link">Our Story</a>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> 123 Luxury Avenue, Vista City</p>
+                    <p><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@Treebo.com</p>
+                    <p><i class="fas fa-clock me-2"></i> 24/7 Reception</p>
+                    
+                    <div class="mt-4">
+                        <a href="index.html#booking" class="btn booking-btn" style="background-color: var(--secondary-color); color: var(--dark-color); border: none; padding: 10px 25px; font-weight: 600; border-radius: 50px;">
+                            <i class="fas fa-calendar-alt me-2"></i>Book Your Stay
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5 pt-4 border-top">
+                <div class="col-md-6 text-center text-md-start">
+                    <p>&copy; 2023 Hotel. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="footer-link me-3">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap & JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Shopping Cart functionality
+        let cart = [];
+        let cartTotal = 0;
+        
+        // Add to order buttons
+        document.querySelectorAll('.add-to-order').forEach(button => {
+            button.addEventListener('click', function() {
+                const itemName = this.getAttribute('data-item');
+                const itemPrice = parseFloat(this.getAttribute('data-price'));
+                
+                // Add item to cart
+                cart.push({
+                    name: itemName,
+                    price: itemPrice
+                });
+                
+                // Update cart display
+                updateCart();
+                
+                // Change button text temporarily
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check me-2"></i>Added!';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }, 1500);
+            });
+        });
+        
+        function updateCart() {
+            const cartElement = document.getElementById('orderCart');
+            const subtotalElement = document.getElementById('cartSubtotal');
+            const serviceElement = document.getElementById('cartService');
+            const totalElement = document.getElementById('cartTotal');
+            const placeOrderBtn = document.getElementById('placeOrderBtn');
+            
+            if (cart.length === 0) {
+                cartElement.innerHTML = '<p class="text-muted text-center py-4">Your cart is empty. Add items from the menu.</p>';
+                subtotalElement.textContent = '$0.00';
+                serviceElement.textContent = '$0.00';
+                totalElement.textContent = '$0.00';
+                placeOrderBtn.disabled = true;
+                return;
+            }
+            
+            // Calculate totals
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += item.price;
+            });
+            
+            const serviceCharge = subtotal * 0.10;
+            const total = subtotal + serviceCharge;
+            
+            // Update totals
+            subtotalElement.textContent = '$' + subtotal.toFixed(2);
+            serviceElement.textContent = '$' + serviceCharge.toFixed(2);
+            totalElement.textContent = '$' + total.toFixed(2);
+            
+            // Update cart display
+            let cartHTML = '<div class="cart-items">';
+            cart.forEach((item, index) => {
+                cartHTML += `
+                    <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
+                        <div>
+                            <h6 class="mb-0">${item.name}</h6>
+                            <small class="text-muted">$${item.price.toFixed(2)}</small>
+                        </div>
+                        <button class="btn btn-sm btn-outline-danger remove-item" data-index="${index}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            cartHTML += '</div>';
+            
+            cartElement.innerHTML = cartHTML;
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    cart.splice(index, 1);
+                    updateCart();
+                });
+            });
+            
+            placeOrderBtn.disabled = false;
+        }
+        
+        // Place order button
+        document.getElementById('placeOrderBtn').addEventListener('click', function() {
+            if (cart.length === 0) {
+                alert('Your cart is empty. Please add items before placing an order.');
+                return;
+            }
+            
+            const orderSummary = cart.map(item => `• ${item.name} - $${item.price.toFixed(2)}`).join('\n');
+            const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+            const total = subtotal * 1.10;
+            
+            alert(`Thank you for your order!\n\nOrder Summary:\n${orderSummary}\n\nTotal: $${total.toFixed(2)}\n\nYour order will be prepared shortly. You will receive a confirmation call.`);
+            
+            // Clear cart
+            cart = [];
+            updateCart();
+        });
+        
+        // Reservation form submission
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('resName').value;
+            const date = document.getElementById('resDate').value;
+            const time = document.getElementById('resTime').value;
+            const guests = document.getElementById('resGuests').value;
+            
+            // Format date for display
+            const dateObj = new Date(date);
+            const formattedDate = dateObj.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            alert(`Thank you ${name}!\n\nYour table for ${guests} is reserved for ${formattedDate} at ${time}.\n\nWe look forward to serving you!`);
+            
+            // Reset form
+            this.reset();
+            
+            // Set default date to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const tomorrowStr = tomorrow.toISOString().split('T')[0];
+            document.getElementById('resDate').value = tomorrowStr;
+        });
+        
+        // Set minimum date for reservation to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('resDate').setAttribute('min', today);
+        
+        // Set default date to tomorrow
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const tomorrowStr = tomorrow.toISOString().split('T')[0];
+        document.getElementById('resDate').value = tomorrowStr;
+        
+        // Set default time to 7:00 PM
+        document.getElementById('resTime').value = '19:00';
+    </script>
+</body>
+</html>
